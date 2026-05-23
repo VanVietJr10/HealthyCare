@@ -1,0 +1,224 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --focus-outline: 3px solid black;
+  --focus-bg: yellow;
+  --focus-color: black;
+  --focus-padding: 3px;
+}
+
+/* Khi thẻ menu có thêm class "active", chữ sẽ chuyển màu xanh đậm và đậm lên */
+.header-right-menu a.active {
+  color: white; /* Thay bằng màu chủ đạo sáng của bạn (ví dụ màu xanh y tế) */
+  font-weight: 700; /* Làm chữ đậm lên */
+  border-bottom: 2px solid #2563eb; /* Thêm một đường gạch chân nhỏ phía dưới cho đẹp (tùy chọn) */
+  padding-bottom: 4px;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.header {
+  width: 100%;
+  background-color: #0b4682;
+}
+
+.header-all {
+  width: 70rem;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+.header-left img {
+  width: 135px;
+  background-color: none;
+  margin-right: -2.1875rem;
+}
+
+.header-left p {
+  color: white;
+  font-size: 1.5625rem;
+}
+
+.header-right-menu {
+  display: flex;
+  color: white;
+  justify-content: space-around;
+  gap: 1.875rem;
+}
+
+.header-right-menu li {
+  list-style: none;
+  font-size: 1.25rem;
+}
+
+.header-right a {
+  color: white;
+  text-decoration: none;
+  transition: all 0.2 ease;
+}
+
+.header-right-menu a:focus-visible {
+  outline: var(--focus-outline);
+  background-color: var(--focus-bg);
+  color: var(--focus-color);
+  padding: var(--focus-padding);
+}
+
+.main-content {
+  width: 100%;
+}
+
+.content-news {
+  background-color: #e4f2fd;
+  width: 100%;
+}
+
+.content-news-all {
+  width: 70rem;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.content-news-left {
+  margin: 2rem 0;
+  width: 60%;
+}
+
+.content-news-left-title {
+  width: 37.5rem;
+  font-size: 50px;
+}
+
+.content-news-left-des {
+  width: 37.5rem;
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+  font-size: 1.5625rem;
+}
+
+.content-news-btn {
+  padding: 0.625rem;
+  color: white;
+  background-color: #176cbc;
+  font-size: 1rem;
+}
+
+.content-news-btn:focus-visible {
+  background-color: var(--focus-bg);
+  padding: var(--focus-padding + 0.625rem);
+  color: var(--focus-color);
+  outline: var(--focus-outline);
+}
+
+.content-news-right {
+  width: 40%;
+}
+
+.content-news-right img {
+  width: 15.9375rem;
+  margin-left: 4.375rem;
+}
+
+.specialties-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 20px;
+}
+
+#specialties-heading {
+  text-align: center;
+  font-size: 2rem;
+  color: #0f172a;
+  margin-bottom: 40px;
+}
+
+.specialties-opinion {
+  list-style: none;
+  padding: 0;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.specialties-opinion li {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  min-height: 60px;
+  display: flex;
+}
+
+.specialties-opinion a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 16px;
+  color: #1e40af;
+  text-decoration: none;
+  font-weight: 600;
+  text-align: center;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.specialties-opinion a:focus-visible {
+  outline: 3px solid black;
+  background-color: yellow;
+  color: black;
+}
+
+footer {
+  width: 100%;
+  background-color: #0b4682;
+  height: 3.125rem;
+}
+
+.footer-all {
+  width: 70rem;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-left h4,
+.footer-right h4 {
+  margin-top: 20px;
+  color: white;
+}
+
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  background: #2563eb;
+  color: white;
+  padding: 10px 20px;
+  z-index: 9999;
+  transition: top 0.2s;
+}
+.skip-link:focus {
+  top: 0;
+}

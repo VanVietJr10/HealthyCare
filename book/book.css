@@ -1,0 +1,132 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.booking-layout {
+  max-width: 800px;
+  margin: 60px auto;
+  padding: 0 20px;
+}
+
+.booking-section {
+  background-color: #ffffff;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  border: 1px solid #f1f5f9;
+}
+
+.booking-title {
+  font-size: 28px;
+  color: #1e293b;
+  margin-bottom: 10px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.booking-subtitle {
+  font-size: 15px;
+  color: #64748b;
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.booking-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #334155;
+}
+
+.form-group input[type="text"],
+.form-group input[type="tel"],
+.form-group input[type="date"],
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 15px;
+  color: #1e293b;
+  background-color: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  outline: none;
+  font-family: inherit;
+  transition: all 0.25s ease-in-out;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: #2563eb;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #94a3b8;
+  font-size: 14px;
+}
+
+.btn-submit-booking {
+  background-color: #2563eb;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 15px;
+  box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
+  transition: all 0.2s ease;
+}
+
+.btn-submit-booking:hover {
+  background-color: #1d4ed8;
+  transform: translateY(-1px);
+  box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3);
+}
+
+.btn-submit-booking:active {
+  transform: translateY(1px);
+  box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
+}
+
+@media (max-width: 600px) {
+  .booking-section {
+    padding: 24px;
+  }
+  .booking-title {
+    font-size: 24px;
+  }
+}
+
+.status-message {
+  padding: 15px;
+  background-color: #dcfce7; /* Nền xanh lá nhạt */
+  border: 1px solid #bbf7d0;
+  border-radius: 8px;
+  color: #166534; /* Chữ xanh đậm */
+  font-size: 15px;
+  margin-top: 15px;
+}
