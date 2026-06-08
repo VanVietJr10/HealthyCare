@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const menuLinks = document.querySelectorAll(".header-right-menu a");
 
   // ========================================================
-  // PHẦN 1: TỰ ĐỘNG LÀM SÁNG MENU THEO TRANG (ĐÃ FIX LỖI BIẾN)
+  // PHẦN 1: TỰ ĐỘNG LÀM SÁNG MENU THEO TRANG
   // ========================================================
   const isDoctorsPage = currentPath.includes("doctors.html");
   const isBookingPage =
@@ -50,12 +50,12 @@ document.addEventListener("DOMContentLoaded", () => {
     "san-phu-khoa": "Chuyên khoa Sản Phụ Khoa",
     "tai-mui-hong": "Chuyên khoa Tai Mũi Họng",
     "rang-ham-mat": "Chuyên khoa Răng Hàm Mặt",
-    mat: "Chuyên khoa Mắt",
+    "mat": "Chuyên khoa Mắt",
     "da-lieu": "Chuyên khoa Da Liễu",
     "tim-mach": "Chuyên khoa Tim Mạch",
     "co-xuong-khop": "Chuyên khoa Cơ Xương Khớp",
     "than-kinh": "Chuyên khoa Thần Kinh",
-    nhi: "Chuyên khoa Nhi",
+    "nhi": "Chuyên khoa Nhi",
   };
 
   if (specialtyHeading) {
