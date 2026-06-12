@@ -50,12 +50,12 @@ document.addEventListener("DOMContentLoaded", () => {
     "san-phu-khoa": "Chuyên khoa Sản Phụ Khoa",
     "tai-mui-hong": "Chuyên khoa Tai Mũi Họng",
     "rang-ham-mat": "Chuyên khoa Răng Hàm Mặt",
-    "mat": "Chuyên khoa Mắt",
+    mat: "Chuyên khoa Mắt",
     "da-lieu": "Chuyên khoa Da Liễu",
     "tim-mach": "Chuyên khoa Tim Mạch",
     "co-xuong-khop": "Chuyên khoa Cơ Xương Khớp",
     "than-kinh": "Chuyên khoa Thần Kinh",
-    "nhi": "Chuyên khoa Nhi",
+    nhi: "Chuyên khoa Nhi",
   };
 
   if (specialtyHeading) {
@@ -153,5 +153,27 @@ document.addEventListener("DOMContentLoaded", () => {
         window.location.href = "../index.html";
       }, 3000);
     });
+  }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  // 1. Lấy toàn bộ tham số từ URL xuống
+  const urlParams = new URLSearchParams(window.location.search);
+  const doctorName = urlParams.get("doctor");
+  const specialtyValue = urlParams.get("specialty");
+
+  // 2. Tìm các thẻ ô nhập liệu (Sửa lại id cho đúng với file HTML đặt lịch của bạn)
+  const specialtySelect = document.getElementById("specialty"); // Thẻ <select> chọn chuyên khoa
+  const doctorInput = document.getElementById("doctor"); // Thẻ <input> điền tên bác sĩ
+
+  // 3. Tự động điền dữ liệu nếu có tham số trên đường dẫn URL
+  if (specialtyValue && specialtySelect) {
+    specialtySelect.value = specialtyValue;
+  }
+
+  if (doctorName && doctorInput) {
+    doctorInput.value = doctorName;
+    // Tùy chọn chuẩn WCAG: Khóa ô nhập liệu lại để người dùng không chỉnh sửa nhầm tên bác sĩ đã chọn
+    doctorInput.readOnly = true;
   }
 });

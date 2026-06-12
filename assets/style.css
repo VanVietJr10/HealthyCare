@@ -9,35 +9,34 @@
   --focus-bg: yellow;
   --focus-color: black;
   --focus-padding: 3px;
-}
-
-/* Khi thẻ menu có thêm class "active", chữ sẽ chuyển màu xanh đậm và đậm lên */
-.header-right-menu a.active {
-  color: white; /* Thay bằng màu chủ đạo sáng của bạn (ví dụ màu xanh y tế) */
-  font-weight: 700; /* Làm chữ đậm lên */
-  border-bottom: 2px solid #2563eb; /* Thêm một đường gạch chân nhỏ phía dưới cho đẹp (tùy chọn) */
-  padding-bottom: 4px;
-}
-
-button:hover {
-  cursor: pointer;
+  --primary-blue: #0b4682;
+  --btn-blue: #176cbc;
+  --btn-hover: #1d4ed8;
 }
 
 body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.header {
-  width: 100%;
-  background-color: #0b4682;
+button:hover {
+  cursor: pointer;
 }
 
-.header-all {
-  width: 70rem;
+.header-all,
+.content-news-all,
+.footer-all {
+  width: 100%;
+  max-width: 70rem;
   margin: 0 auto;
+  padding: 0 1.25rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.header {
+  width: 100%;
+  background-color: var(--primary-blue);
 }
 
 .header-left {
@@ -45,10 +44,18 @@ body {
   align-items: center;
 }
 
+.header-left a {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
 .header-left img {
   width: 135px;
-  background-color: none;
-  margin-right: -2.1875rem;
+  height: auto;
+  display: block;
+  margin-right: -40px;
 }
 
 .header-left p {
@@ -58,20 +65,33 @@ body {
 
 .header-right-menu {
   display: flex;
-  color: white;
-  justify-content: space-around;
+  list-style: none;
   gap: 1.875rem;
+  padding: 5px 2px;
 }
 
 .header-right-menu li {
-  list-style: none;
   font-size: 1.25rem;
 }
 
-.header-right a {
+.header-right-menu a {
   color: white;
   text-decoration: none;
-  transition: all 0.2 ease;
+  transition: all 0.2s ease;
+  display: inline-block;
+}
+
+.header-right-menu li a:hover {
+  background-color: #7a99e2;
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+
+.header-right-menu a.active {
+  color: white;
+  font-weight: 700;
+  border-bottom: 2px solid #2563eb;
+  padding-bottom: 4px;
 }
 
 .header-right-menu a:focus-visible {
@@ -90,55 +110,60 @@ body {
   width: 100%;
 }
 
-.content-news-all {
-  width: 70rem;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
 .content-news-left {
   margin: 2rem 0;
-  width: 60%;
+  width: 55%;
 }
 
 .content-news-left-title {
-  width: 37.5rem;
+  width: 100%;
+  max-width: 37.5rem;
   font-size: 50px;
+  overflow-wrap: break-word;
 }
 
 .content-news-left-des {
-  width: 37.5rem;
-  margin-top: 1.25rem;
-  margin-bottom: 1.25rem;
+  width: 100%;
+  max-width: 37.5rem;
+  margin: 1.25rem 0;
   font-size: 1.5625rem;
+  overflow-wrap: break-word;
 }
 
 .content-news-btn {
-  padding: 0.625rem;
+  padding: 0.625rem 1.25rem;
   color: white;
-  background-color: #176cbc;
+  background-color: var(--btn-blue);
   font-size: 1rem;
+  border: none;
+  transition: background-color 0.2s;
+}
+
+.content-news-btn:hover {
+  background-color: var(--btn-hover);
 }
 
 .content-news-btn:focus-visible {
-  background-color: var(--focus-bg);
-  padding: var(--focus-padding + 0.625rem);
-  color: var(--focus-color);
   outline: var(--focus-outline);
+  background-color: var(--focus-bg);
+  color: var(--focus-color);
+  padding: calc(var(--focus-padding) + 0.625rem);
 }
 
 .content-news-right {
   width: 40%;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .content-news-right img {
-  width: 15.9375rem;
-  margin-left: 4.375rem;
+  width: 100%;
+  max-width: 15.9375rem;
+  height: auto;
 }
 
 .specialties-section {
+  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
   padding: 60px 20px;
@@ -154,9 +179,8 @@ body {
 .specialties-opinion {
   list-style: none;
   padding: 0;
-
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 24px;
 }
 
@@ -165,7 +189,6 @@ body {
   border: 1px solid #e2e8f0;
   border-radius: 8px;
   min-height: 60px;
-  display: flex;
 }
 
 .specialties-opinion a {
@@ -183,29 +206,25 @@ body {
   transition: all 0.2s ease;
 }
 
+.specialties-opinion li a:hover {
+  background-color: #edf0f8;
+}
+
 .specialties-opinion a:focus-visible {
-  outline: 3px solid black;
-  background-color: yellow;
-  color: black;
+  outline: var(--focus-outline);
+  background-color: var(--focus-bg);
+  color: var(--focus-color);
 }
 
 footer {
   width: 100%;
-  background-color: #0b4682;
-  height: 3.125rem;
-}
-
-.footer-all {
-  width: 70rem;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  background-color: var(--primary-blue);
+  min-height: 3.125rem;
 }
 
 .footer-left h4,
 .footer-right h4 {
-  margin-top: 20px;
+  padding: 10px 0;
   color: white;
 }
 
@@ -219,6 +238,30 @@ footer {
   z-index: 9999;
   transition: top 0.2s;
 }
+
 .skip-link:focus {
   top: 0;
+}
+
+@media (max-width: 768px) {
+  .header-all,
+  .content-news-all,
+  .footer-all {
+    flex-direction: column;
+    gap: 1.25rem;
+    text-align: center;
+  }
+
+  .content-news-left,
+  .content-news-right {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .content-news-right img {
+    margin-left: 0;
+  }
 }

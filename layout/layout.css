@@ -9,6 +9,8 @@
   --focus-bg: yellow;
   --focus-color: black;
   --focus-padding: 3px;
+  /* --primary-blue: #2563eb; */
+  --primary-hover: #1d4ed8;
 }
 
 .directory-layout {
@@ -16,29 +18,25 @@
 }
 
 .doctors-section {
-  width: 70rem;
+  width: 100%;
+  max-width: 70rem;
   margin: 0 auto;
-  justify-content: space-between;
+  padding: 0 1.25rem;
 }
 
 .current-title {
   border: 0.1875rem solid #cde7f8;
-  width: 9.375rem;
+  width: 100%;
+  max-width: 12.5rem;
   margin-top: 10px;
   padding: 11px 8px 8px 13px;
   font-size: 16px;
-}
-
-.doctor-card button:focus-visible {
-  background-color: var(--focus-bg);
-  color: var(--focus-color);
-  outline: var(--focus-outline);
-  padding: var(--focus-padding + 8px);
+  overflow-wrap: break-word;
 }
 
 .doctors-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 24px;
   padding: 20px 0;
 }
@@ -53,6 +51,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
 }
 
 .avatar {
@@ -74,31 +73,77 @@
   font-size: 1.125rem;
   color: #0f172a;
   margin: 0 0 8px 0;
+  overflow-wrap: break-word;
+  width: 100%;
 }
 
 .doctor-card p {
   font-size: 0.875rem;
   color: #64748b;
   margin: 0 0 20px 0;
+  overflow-wrap: break-word;
+  width: 100%;
 }
 
 .doctor-card button {
   width: 100%;
   padding: 10px 16px;
-  background-color: #2563eb;
+  background-color: var(--primary-blue);
   color: #ffffff;
   border: none;
   border-radius: 6px;
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.2s;
+  min-height: 44px;
 }
 
 .doctor-card button:hover {
-  background-color: #1d4ed8;
+  background-color: var(--primary-hover);
 }
 
 .doctor-card button:focus-visible {
-  outline: 3px solid #000000;
+  background-color: var(--focus-bg) !important;
+  color: var(--focus-color) !important;
+  outline: var(--focus-outline) !important;
+  outline-offset: 2px;
+  padding: calc(var(--focus-padding) + 10px 16px);
+}
+
+@media (max-width: 480px) {
+  .doctors-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .current-title {
+    max-width: 100%;
+    text-align: center;
+  }
+}
+
+.doctor-card .btn-booking-link {
+  display: block;
+  width: 100%;
+  padding: 10px 16px;
+  background-color: var(--primary-blue);
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  min-height: 44px;
+}
+
+.doctor-card .btn-booking-link:hover {
+  background-color: var(--primary-hover);
+}
+
+.doctor-card .btn-booking-link:focus-visible {
+  background-color: var(--focus-bg) !important;
+  color: var(--focus-color) !important;
+  outline: var(--focus-outline) !important;
   outline-offset: 2px;
 }
