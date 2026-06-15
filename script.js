@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ========================================================
-  // PHẦN 3: LOGIC TỰ ĐỘNG ĐỔI BÁC SĨ THEO KHOA (ĐÃ ĐƯA VÀO TRONG EVENT)
+  // PHẦN 3: LOGIC TỰ ĐỘNG ĐỔI BÁC SĨ THEO KHOA
   // ========================================================
   const doctorsByKhoa = {
     "noi-tong-quat": [
