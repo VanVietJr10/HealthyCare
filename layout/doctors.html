@@ -32,8 +32,6 @@
     </header>
 
     <main class="directory-layout" id="main-content">
-      <aside class="filter-sidebar"></aside>
-
       <section class="doctors-section" aria-labelledby="current-specialty">
         <h1 id="current-specialty" aria-live="polite" class="current-title">
           Tất cả bác sĩ
@@ -49,7 +47,9 @@
             </div>
             <h4>Bác sĩ Đặng Minh Hải</h4>
             <p>Chuyên khoa Tim Mạch</p>
-            <button>Đặt lịch khám</button>
+            <button aria-label="Đặt lịch khám với Bác sĩ Đặng Minh Hải">
+              Đặt lịch khám
+            </button>
           </div>
 
           <div class="doctor-card" data-khoa="da-lieu">
@@ -61,7 +61,9 @@
             </div>
             <h4>Bác sĩ Trần Hải Yến</h4>
             <p>Chuyên khoa Da Liễu</p>
-            <button>Đặt lịch khám</button>
+            <button aria-label="Đặt lịch khám với Bác sĩ Trần Hải Yến">
+              Đặt lịch khám
+            </button>
           </div>
 
           <div class="doctor-card" data-khoa="mat">
@@ -73,10 +75,11 @@
             </div>
             <h4>Bác sĩ Đặng Trần Đạt</h4>
             <p>Chuyên khoa Mắt</p>
-            <button>Đặt lịch khám</button>
+            <button aria-label="Đặt lịch khám với Bác sĩ Đặng Trần Đạt">
+              Đặt lịch khám
+            </button>
           </div>
 
-          <!-- Răng hàm mặt -->
           <div class="doctor-card" data-khoa="rang-ham-mat">
             <div class="avatar">
               <img
@@ -86,7 +89,9 @@
             </div>
             <h4>Bác sĩ Doãn Bá Bình</h4>
             <p>Chuyên khoa Răng Hàm Mặt</p>
-            <button>Đặt lịch khám</button>
+            <button aria-label="Đặt lịch khám với Bác sĩ Doãn Bá Bình">
+              Đặt lịch khám
+            </button>
           </div>
 
           <div class="doctor-card" data-khoa="rang-ham-mat">
@@ -98,7 +103,9 @@
             </div>
             <h4>Bác sĩ Phan Văn Minh</h4>
             <p>Chuyên khoa Răng Hàm Mặt</p>
-            <button>Đặt lịch khám</button>
+            <button aria-label="Đặt lịch khám với Bác sĩ Phan Văn Minh">
+              Đặt lịch khám
+            </button>
           </div>
 
           <div class="doctor-card" data-khoa="rang-ham-mat">
@@ -110,11 +117,10 @@
             </div>
             <h4>Bác sĩ Tôn Thất Khoa</h4>
             <p>Chuyên khoa Răng Hàm Mặt</p>
-            <button>Đặt lịch khám</button>
+            <button aria-label="Đặt lịch khám với Bác sĩ Tôn Thất Khoa">
+              Đặt lịch khám
+            </button>
           </div>
-          <!-- End RHM -->
-
-          <!-- Sản phụ khoa -->
           <div class="doctor-card" data-khoa="san-phu-khoa">
             <div class="avatar">
               <img
@@ -124,11 +130,10 @@
             </div>
             <h4>Bác sĩ Trịnh Thị Thuý</h4>
             <p>Chuyên khoa Sản phụ khoa</p>
-            <button>Đặt lịch khám</button>
+            <button aria-label="Đặt lịch khám với Bác sĩ Trịnh Thị Thuý">
+              Đặt lịch khám
+            </button>
           </div>
-          <!-- END SPK -->
-
-          <!-- Nhi -->
           <div class="doctor-card" data-khoa="than-kinh">
             <div class="avatar">
               <img
@@ -138,10 +143,10 @@
             </div>
             <h4>Bác sĩ Trịnh Tiến Lực</h4>
             <p>Chuyên khoa Thần Kinh</p>
-            <button>Đặt lịch khám</button>
+            <button aria-label="Đặt lịch khám với Bác sĩ Trịnh Tiến Lực">
+              Đặt lịch khám
+            </button>
           </div>
-          <!-- end Nhi -->
-
           <div class="doctor-card" data-khoa="noi-tong-quat">
             <div class="avatar">
               <img
@@ -151,7 +156,9 @@
             </div>
             <h4>Bác sĩ Từ Thị Thu Hà</h4>
             <p>Chuyên khoa Nội Tổng Quát</p>
-            <button>Đặt lịch khám</button>
+            <button aria-label="Đặt lịch khám với Bác sĩ Từ Thị Thu Hà">
+              Đặt lịch khám
+            </button>
           </div>
 
           <div class="doctor-card" data-khoa="tai-mui-hong">
@@ -163,7 +170,9 @@
             </div>
             <h4>Bác sĩ Nguyễn Quỳnh Anh</h4>
             <p>Chuyên khoa Tai Mũi Họng</p>
-            <button>Đặt lịch khám</button>
+            <button aria-label="Đặt lịch khám với Bác sĩ Nguyễn Quỳnh Anh">
+              Đặt lịch khám
+            </button>
           </div>
 
           <div class="doctor-card" data-khoa="co-xuong-khop">
@@ -175,12 +184,33 @@
             </div>
             <h4>Bác sĩ Lê Quốc Việt</h4>
             <p>Chuyên khoa Cơ Xương Khớp</p>
-            <button>Đặt lịch khám</button>
+            <button aria-label="Đặt lịch khám với Bác sĩ Lê Quốc Việt">
+              Đặt lịch khám
+            </button>
           </div>
         </div>
       </section>
     </main>
 
+    <footer role="contentinfo" aria-label="Chân trang">
+      <div class="footer-all">
+        <div class="footer-left">
+          <p style="font-weight: bold; margin: 0">
+            Copyright.info & Trợ giúp (Consistent Help3.2.0)
+          </p>
+        </div>
+        <div class="footer-right">
+          <p style="font-weight: bold; margin: 0">
+            Hỗ trợ nhất quán và Trợ Giúp
+          </p>
+        </div>
+      </div>
+    </footer>
+
     <script src="../script.js"></script>
+    <script
+      src="https://cdn.userway.org/widget.js"
+      data-account="O6Fv89TzKq"
+    ></script>
   </body>
 </html>

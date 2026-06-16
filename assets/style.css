@@ -222,8 +222,8 @@ footer {
   min-height: 3.125rem;
 }
 
-.footer-left h4,
-.footer-right h4 {
+.footer-left p,
+.footer-right p {
   padding: 10px 0;
   color: white;
 }

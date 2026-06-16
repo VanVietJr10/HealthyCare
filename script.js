@@ -77,18 +77,17 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ========================================================
-  // PHẦN 3: TỰ ĐỘNG QUÉT VÀ ĐỔ DANH SÁCH BÁC SĨ THỰC TẾ THEO KHOA
+  // PHẦN 3 & 5: ĐỌC ĐỘNG TRANG DOCTORS.HTML KHÔNG CẦN DÙNG ID CỨNG
   // ========================================================
   const selectKhoa = document.getElementById("select-khoa");
   const selectDoctor = document.getElementById("select-doctor");
 
-  // Hàm động đọc file doctors.html bằng Fetch để lấy danh sách bác sĩ thực tế
-  async function renderDoctorsDynamic(khoaValue, defaultDoctorId = "") {
+  // Hàm tự động quét file doctors.html dựa theo Chuyên Khoa
+  async function renderDoctorsDynamic(khoaValue, defaultDoctorName = "") {
     if (!selectDoctor) return;
 
     selectDoctor.innerHTML = "";
 
-    // Nếu chưa chọn khoa, reset ô bác sĩ về trạng thái ban đầu
     if (khoaValue === "") {
       selectDoctor.innerHTML =
         '<option value="">-- Vui lòng chọn chuyên khoa trước --</option>';
@@ -97,15 +96,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     try {
-      // Đọc mã nguồn trang doctors.html (Chỉnh lại đường dẫn nếu file của bạn nằm ở thư mục khác)
       const response = await fetch("../layout/doctors.html");
       const htmlText = await response.text();
 
-      // Giả lập một môi trường DOM để phân tích cú pháp chuỗi HTML vừa lấy về
       const parser = new DOMParser();
       const docHTML = parser.parseFromString(htmlText, "text/html");
 
-      // Tìm tất cả phần tử bác sĩ thực tế có data-khoa tương ứng
+      // Tìm các card bác sĩ có data-khoa tương ứng
       const realDoctorCards = docHTML.querySelectorAll(
         `.doctor-card[data-khoa="${khoaValue}"]`,
       );
@@ -116,57 +113,77 @@ document.addEventListener("DOMContentLoaded", () => {
           '<option value="">-- Chọn bác sĩ phụ trách --</option>';
 
         realDoctorCards.forEach((card) => {
-          // Lấy ID của card bác sĩ để làm giá trị (value) gửi form
-          const docId = card.id || card.getAttribute("id") || "no-id";
-
-          // Tìm thẻ chứa tên bác sĩ (Thường bạn sẽ dùng h3 hoặc h4 hoặc class tên cụ thể)
+          // Lấy text tên bác sĩ từ thẻ h4 hoặc h3 làm tên hiển thị VÀ giá trị value luôn
           const nameElement =
-            card.querySelector("h3") ||
             card.querySelector("h4") ||
+            card.querySelector("h3") ||
             card.querySelector(".doctor-name");
-          const docName = nameElement
-            ? nameElement.textContent.trim()
-            : "Bác sĩ chưa đặt tên";
+          const docName = nameElement ? nameElement.textContent.trim() : "";
 
-          const option = document.createElement("option");
-          option.value = docId;
-          option.textContent = docName;
+          if (docName) {
+            const option = document.createElement("option");
+            option.value = docName; // Dùng trực tiếp Tên Bác Sĩ làm value gửi form
+            option.textContent = docName;
 
-          // Nếu trùng với ID bác sĩ truyền từ URL sang thì tự động chọn luôn
-          if (docId === defaultDoctorId) {
-            option.selected = true;
+            // So sánh trực tiếp bằng Tên Bác Sĩ truyền từ URL sang
+            if (docName.toLowerCase() === defaultDoctorName.toLowerCase()) {
+              option.selected = true;
+            }
+            selectDoctor.appendChild(option);
           }
-          selectDoctor.appendChild(option);
         });
       } else {
-        // Nếu trong file HTML thực tế không tìm thấy card bác sĩ nào thuộc khoa này
         selectDoctor.innerHTML =
           '<option value="">-- Khoa này hiện chưa có lịch bác sĩ --</option>';
         selectDoctor.disabled = true;
       }
     } catch (error) {
-      console.error("Lỗi hệ thống khi quét file HTML bác sĩ:", error);
+      console.error("Lỗi khi quét file HTML bác sĩ:", error);
       selectDoctor.innerHTML =
         '<option value="">-- Không thể tải danh sách bác sĩ --</option>';
       selectDoctor.disabled = true;
     }
   }
 
-  // Lắng nghe sự kiện thay đổi Chuyên Khoa trên form
+  // Lắng nghe sự kiện đổi Chuyên Khoa trên form đặt lịch
   if (selectKhoa && selectDoctor) {
     selectKhoa.addEventListener("change", (e) => {
       renderDoctorsDynamic(e.target.value);
     });
   }
 
-  // Xử lý tự động điền nếu có tham số truyền từ trang Danh sách bác sĩ sang
-  const paramDoctor = urlParams.get("doctor");
+  // Nhận tham số Tên Bác Sĩ từ URL sang (Ví dụ: ?specialty=tim-mach&doctor=Bác sĩ Đặng Minh Hải)
+  const paramDoctorName = urlParams.get("doctor");
   const paramSpecialty = urlParams.get("specialty");
 
   if (paramSpecialty && selectKhoa) {
     selectKhoa.value = paramSpecialty;
-    renderDoctorsDynamic(paramSpecialty, paramDoctor);
+    renderDoctorsDynamic(paramSpecialty, paramDoctorName);
   }
+
+  // Lắng nghe sự kiện click nút "Đặt lịch khám" ngay tại trang danh sách bác sĩ
+  const bookingButtons = document.querySelectorAll(".doctor-card button");
+  bookingButtons.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      const card = e.target.closest(".doctor-card");
+      if (card) {
+        const khoa = card.getAttribute("data-khoa");
+        // Bốc trực tiếp chữ trong thẻ h4 của chính card đó
+        const nameElement =
+          card.querySelector("h4") ||
+          card.querySelector("h3") ||
+          card.querySelector(".doctor-name");
+        const docName = nameElement ? nameElement.textContent.trim() : "";
+
+        if (khoa && docName) {
+          // Mã hóa tên tiếng Việt có dấu đưa lên đường dẫn URL an toàn bằng encodeURIComponent
+          window.location.href = `../book/book.html?specialty=${khoa}&doctor=${encodeURIComponent(docName)}`;
+        } else if (khoa) {
+          window.location.href = `../book/book.html?specialty=${khoa}`;
+        }
+      }
+    });
+  });
 
   // ========================================================
   // PHẦN 4: CHẶN TẢI LẠI TRANG KHI GỬI FORM VÀ QUAY VỀ TRANG CHỦ
