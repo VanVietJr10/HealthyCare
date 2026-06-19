@@ -3,9 +3,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const menuLinks = document.querySelectorAll(".header-right-menu a");
   const urlParams = new URLSearchParams(window.location.search);
 
-  // ========================================================
-  // PHẦN 1: TỰ ĐỘNG LÀM SÁNG MENU THEO TRANG (Chuẩn WCAG)
-  // ========================================================
   const isDoctorsPage = currentPath.includes("doctors.html");
   const isBookingPage =
     currentPath.includes("book.html") || currentPath.includes("/book/");
@@ -38,9 +35,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // ========================================================
-  // PHẦN 2: ĐỔI TIÊU ĐỀ H3 VÀ LỌC BÁC SĨ (TRANG DOCTORS)
-  // ========================================================
   const selectedKhoa = urlParams.get("khoa");
   const specialtyHeading = document.getElementById("current-specialty");
   const doctorCards = document.querySelectorAll(".doctor-card");
@@ -76,13 +70,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // ========================================================
-  // PHẦN 3 & 5: ĐỌC ĐỘNG TRANG DOCTORS.HTML KHÔNG CẦN DÙNG ID CỨNG
-  // ========================================================
   const selectKhoa = document.getElementById("select-khoa");
   const selectDoctor = document.getElementById("select-doctor");
 
-  // Hàm tự động quét file doctors.html dựa theo Chuyên Khoa
   async function renderDoctorsDynamic(khoaValue, defaultDoctorName = "") {
     if (!selectDoctor) return;
 
@@ -102,7 +92,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const parser = new DOMParser();
       const docHTML = parser.parseFromString(htmlText, "text/html");
 
-      // Tìm các card bác sĩ có data-khoa tương ứng
       const realDoctorCards = docHTML.querySelectorAll(
         `.doctor-card[data-khoa="${khoaValue}"]`,
       );
@@ -113,7 +102,6 @@ document.addEventListener("DOMContentLoaded", () => {
           '<option value="">-- Chọn bác sĩ phụ trách --</option>';
 
         realDoctorCards.forEach((card) => {
-          // Lấy text tên bác sĩ từ thẻ h4 hoặc h3 làm tên hiển thị VÀ giá trị value luôn
           const nameElement =
             card.querySelector("h4") ||
             card.querySelector("h3") ||
@@ -122,10 +110,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
           if (docName) {
             const option = document.createElement("option");
-            option.value = docName; // Dùng trực tiếp Tên Bác Sĩ làm value gửi form
+            option.value = docName;
             option.textContent = docName;
 
-            // So sánh trực tiếp bằng Tên Bác Sĩ truyền từ URL sang
             if (docName.toLowerCase() === defaultDoctorName.toLowerCase()) {
               option.selected = true;
             }
@@ -145,14 +132,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Lắng nghe sự kiện đổi Chuyên Khoa trên form đặt lịch
   if (selectKhoa && selectDoctor) {
     selectKhoa.addEventListener("change", (e) => {
       renderDoctorsDynamic(e.target.value);
     });
   }
 
-  // Nhận tham số Tên Bác Sĩ từ URL sang (Ví dụ: ?specialty=tim-mach&doctor=Bác sĩ Đặng Minh Hải)
   const paramDoctorName = urlParams.get("doctor");
   const paramSpecialty = urlParams.get("specialty");
 
@@ -161,14 +146,12 @@ document.addEventListener("DOMContentLoaded", () => {
     renderDoctorsDynamic(paramSpecialty, paramDoctorName);
   }
 
-  // Lắng nghe sự kiện click nút "Đặt lịch khám" ngay tại trang danh sách bác sĩ
   const bookingButtons = document.querySelectorAll(".doctor-card button");
   bookingButtons.forEach((btn) => {
     btn.addEventListener("click", (e) => {
       const card = e.target.closest(".doctor-card");
       if (card) {
         const khoa = card.getAttribute("data-khoa");
-        // Bốc trực tiếp chữ trong thẻ h4 của chính card đó
         const nameElement =
           card.querySelector("h4") ||
           card.querySelector("h3") ||
@@ -176,7 +159,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const docName = nameElement ? nameElement.textContent.trim() : "";
 
         if (khoa && docName) {
-          // Mã hóa tên tiếng Việt có dấu đưa lên đường dẫn URL an toàn bằng encodeURIComponent
           window.location.href = `../book/book.html?specialty=${khoa}&doctor=${encodeURIComponent(docName)}`;
         } else if (khoa) {
           window.location.href = `../book/book.html?specialty=${khoa}`;
@@ -185,9 +167,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // ========================================================
-  // PHẦN 4: CHẶN TẢI LẠI TRANG KHI GỬI FORM VÀ QUAY VỀ TRANG CHỦ
-  // ========================================================
   const bookingForm = document.getElementById("main-booking-form");
   const bookingStatus = document.getElementById("booking-status");
 
